@@ -6,7 +6,8 @@ def ask_y_n(question):
 
 
 def new_file(name):
-    open(name, 'a', encoding='utf=8')
+    file = open(name, 'a', encoding='utf=8')
+    file.close()
 
 
 def change_file(name):
@@ -15,6 +16,7 @@ def change_file(name):
         change = input('Enter new data: ')
         file.write(change)
         file.write('\n')
+        file.close()
     except FileNotFoundError:
         print('This file is not found!')
 
@@ -23,6 +25,7 @@ def read_file(name):
     try:
         read_the_file = open(name, 'r', encoding='utf=8')
         print(read_the_file.read())
+        read_the_file.close()
     except FileNotFoundError:
         print('This file is not found!')
 
@@ -44,7 +47,7 @@ PIDOR   2 - Read file
             new_file(enter)
             print('-' * 20)
         elif choice == '2':
-            file = input('Enter name file: ')
+            file = input('Enter name file(.txt): ')
             read_file(file)
             print('-' * 20)
         elif choice == '3':
