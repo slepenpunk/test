@@ -39,7 +39,6 @@ PIDOR   2 - Read file
         choice = input('Enter you variation: ')
         if choice == '0':
             break
-
         elif choice == '1':
             enter = input('Enter name for new file(.txt): ')
             new_file(enter)
@@ -51,7 +50,6 @@ PIDOR   2 - Read file
         elif choice == '3':
             ask = None
             while ask != 'n':
-
                 ask = ask_y_n('Do you want enter new data?(y/n): ')
                 if ask == 'n':
                     break
