@@ -10,9 +10,7 @@ def total_repeats(name_file):
     for i in name_file:
         if i not in d:
             d[i] = 1
-        elif i in k:
-            pass
-        elif i == '\n':
+        elif i in k or i == '\n':
             pass
         else:
             d[i] += 1
