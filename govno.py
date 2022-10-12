@@ -1,7 +1,7 @@
 def open_file(name):
-    text = open(name, 'r', encoding='utf-8')
-    text = text.read()
-    return text
+    with open(name, 'r', encoding='utf-8') as text:
+        text = text.read().lower()
+        return text
 
 
 def total_repeats(name_file):
@@ -11,6 +11,8 @@ def total_repeats(name_file):
         if i not in d:
             d[i] = 1
         elif i in k:
+            pass
+        elif i == '\n':
             pass
         else:
             d[i] += 1
