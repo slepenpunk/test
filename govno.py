@@ -1,3 +1,4 @@
+# Create 5 cats with different specifications of color and mood.
 import random
 class Cats():
     """Create different cats"""
