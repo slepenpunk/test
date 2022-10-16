@@ -63,16 +63,19 @@ def main():
         if choice == '0':
             break
         elif choice == '1':
-            c = int(input('Enter how many cats you want to create: '))
-            if colors:
-                for i in range(c):
-                    color1 = random_color(Cats.colors)
-                    mood1 = random_mood(Cats.moods)
-                    age1 = random_age()
-                    cat1 = Cats(color1, mood1, age1)
-                    print(cat1)
-            else:
-                print('No colors!')
+            try:
+                c = int(input('Enter how many cats you want to create: '))
+                if colors:
+                    for i in range(c):
+                        color1 = random_color(Cats.colors)
+                        mood1 = random_mood(Cats.moods)
+                        age1 = random_age()
+                        cat1 = Cats(color1, mood1, age1)
+                        print(cat1)
+                else:
+                    print('No colors!')
+            except ValueError:
+                print('Enter only numbers!')
         elif choice == '2':
             Cats.total_cats()
         elif choice == '3':
