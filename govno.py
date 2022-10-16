@@ -1,11 +1,22 @@
-# Create 5 cats with different specifications of color, mood and age.
+# Create cats with different specifications of color, mood and age.
 import random
+
+
 class Cats():
     """Create different cats"""
     total = 0
+    colors = ['White', 'Black', 'Gray', 'Brown']
+    moods = ('凸(￣ヘ￣)', '٩(ఠ益ఠ)۶', '(▽◕ ᴥ ◕▽)', '(´｡• ᵕ •｡)')
+
     @staticmethod
     def total_cats():
-        print('total cats:', Cats.total)
+        print('Total cats:', Cats.total)
+
+    @staticmethod
+    def add_colors(color):
+        new = Cats.colors.append(color)
+        return new
+
     def __init__(self, color, mood, age):
         self.color = color
         self.mood = mood
@@ -13,7 +24,7 @@ class Cats():
         Cats.total += 1
 
     def __str__(self):
-        rep = (f'Create a new cat!\n'
+        rep = (f'\nA new cat has been created!\n'
                f'Color - {self.color}\n'
                f'Mood - {self.mood}\n'
                f'Age - {self.age}\n')
@@ -36,42 +47,50 @@ def random_age():
 
 
 def main():
-    colors = ('White', 'Black', 'Gray', 'Brown')
-    moods = ('Good', 'Bad', 'Very Good', 'Very bad')
+    colors = Cats.colors
+    choice = None
+    while choice != '0':
+        print(
+            '''
+            0 - Exit
+            1 - Create cats
+            2 - View total cats
+            3 - View the colors of cats
+            4 - Add color
+            5 - Delete color
+            ''')
+        choice = input('Enter your choice: ')
+        if choice == '0':
+            break
+        elif choice == '1':
+            c = int(input('Enter how many cats you want to create: '))
+            if colors:
+                for i in range(c):
+                    color1 = random_color(Cats.colors)
+                    mood1 = random_mood(Cats.moods)
+                    age1 = random_age()
+                    cat1 = Cats(color1, mood1, age1)
+                    print(cat1)
+            else:
+                print('No colors!')
+        elif choice == '2':
+            Cats.total_cats()
+        elif choice == '3':
+            for i in colors:
+                print(i)
+        elif choice == '4':
+            new_color = input('Enter color new color: ').capitalize()
+            Cats.add_colors(new_color)
+            print('Color', new_color, 'was been added!')
+        elif choice == '5':
+            delete_color = input('Enter color which you want delete: ').capitalize()
+            if delete_color in colors:
+                colors.remove(delete_color)
+                print('Color', delete_color, 'was been deleted!')
+            else:
+                print('No such is color!')
+        else:
+            print('Unknown command!')
 
-    color1 = random_color(colors)
-    mood1 = random_mood(moods)
-    age1 = random_age()
-
-
-    color2 = random_color(colors)
-    mood2 = random_mood(moods)
-    age2 = random_age()
-
-    color3 = random_color(colors)
-    mood3 = random_mood(moods)
-    age3 = random_age()
-
-    color4 = random_color(colors)
-    mood4 = random_mood(moods)
-    age4 = random_age()
-
-    color5 = random_color(colors)
-    mood5 = random_mood(moods)
-    age5 = random_age()
-
-    cat1 = Cats(color1, mood1, age1)
-    cat2 = Cats(color2, mood2, age2)
-    cat3 = Cats(color3, mood3, age3)
-    cat4 = Cats(color4, mood4, age4)
-    cat5 = Cats(color5, mood5, age5)
-
-    print(cat1)
-    print(cat2)
-    print(cat3)
-    print(cat4)
-    print(cat5)
-
-    Cats.total_cats()
 
 main()
