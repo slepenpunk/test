@@ -4,46 +4,45 @@ import random
 
 class Cats():
     """Create different cats"""
-    total = 0
+    _total = 0
     colors = ['White', 'Black', 'Gray', 'Brown']
     moods = ('凸(￣ヘ￣)', '٩(ఠ益ఠ)۶', '(▽◕ ᴥ ◕▽)', '(´｡• ᵕ •｡)')
 
     @staticmethod
     def total_cats():
-        print('Total cats:', Cats.total)
+        print('Total cats:', Cats._total)
 
     @staticmethod
     def add_colors(color):
         new = Cats.colors.append(color)
         return new
 
+    # @classmethod
+    # def random_cat(cls):
+    #     color = random.choice(cls.colors)
+    #     mood = random.choice(cls.moods)
+    #     age = random.randint(1, 20)
+    #     return cls(color, mood, age)
+
+    @staticmethod
+    def random_cat():
+        c = random.choice(Cats.colors)
+        m = random.choice(Cats.moods)
+        a = random.randint(1, 20)
+        return Cats(c, m, a)
+
     def __init__(self, color, mood, age):
         self.color = color
         self.mood = mood
         self.age = age
-        Cats.total += 1
+        Cats._total += 1
 
     def __str__(self):
         rep = (f'\nA new cat has been created!\n'
                f'Color - {self.color}\n'
                f'Mood - {self.mood}\n'
-               f'Age - {self.age}\n')
+               f'Age - {self.age}')
         return rep
-
-
-def random_color(color):
-    color1 = random.choice(color)
-    return color1
-
-
-def random_mood(mood):
-    mood1 = random.choice(mood)
-    return mood1
-
-
-def random_age():
-    age1 = random.randint(1, 20)
-    return age1
 
 
 def main():
@@ -67,11 +66,7 @@ def main():
                 c = int(input('Enter how many cats you want to create: '))
                 if colors:
                     for i in range(c):
-                        color1 = random_color(Cats.colors)
-                        mood1 = random_mood(Cats.moods)
-                        age1 = random_age()
-                        cat1 = Cats(color1, mood1, age1)
-                        print(cat1)
+                        print(Cats.random_cat())
                 else:
                     print('No colors!')
             except ValueError:
